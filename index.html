@@ -5,8 +5,9 @@
 	<link rel="stylesheet" type="text/css" href="./lib/bower_components/bootstrap/dist/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="./styles/main.css">
 </head>
-<body>
-	<nav class="navbar navbar-default">
+<body ng-app="TodoApp">
+
+	<nav class="navbar navbar-default" ng-controller="NavCtrl">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -21,9 +22,8 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
+      <ul class="nav navbar-nav navbar-right" ng-repeat="thingy in navItems">
+        <li><a href="#">{{thingy.name}}</a></li>
       </ul>
       <form class="navbar-form navbar-left">
         <div class="form-group">
@@ -34,11 +34,14 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-	<h1>I am here.</h1>
+	<div ng-controller="ItemCtrl">
+		{{dog}}
+	</div>
 
 
 	<script type="text/javascript" src="./lib/bower_components/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="./lib/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	<script type="text/javascript" src="./lib/bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="./javascripts/main.js"></script>
 </body>
 </html>
