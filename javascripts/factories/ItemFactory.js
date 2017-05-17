@@ -23,14 +23,14 @@ app.factory("ItemFactory", function($http, $q, FIREBASE_CONFIG) {
     return $q((resolve, reject) => {
       $http.get(`${FIREBASE_CONFIG.databaseURL}/items/${id}.json`)
       .then((resultz) => {
-        resultz.id = id;
+        resultz.data.id = id;
         resolve(resultz);
       }).catch((error) => {
         console.log("getSingleItem error", error);
       });
     });
   };
-  
+
   let postNewItem = (newItem) => {
     return $q ((resolve, reject) => {
       $http.post(`${FIREBASE_CONFIG.databaseURL}/items.json`, JSON.stringify(newItem))
