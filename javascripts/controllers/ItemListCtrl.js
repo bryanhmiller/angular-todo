@@ -3,15 +3,23 @@ app.controller("ItemListCtrl", function($scope, ItemFactory) {
 
 	$scope.items = [];
 
-
-  ItemFactory.getItemList().then((itemz) => {
+  let getItems = () => {	
+  	ItemFactory.getItemList().then((itemz) => {
       $scope.items = itemz;
       console.log("itemz", itemz);
     }).catch((error) => {
       console.log("get Error", error);
     });
-  
+  };
 
-  ItemFactory.getItemList();
+  getItems();
+
+  $scope.deleteItem = (id) => {
+  	ItemFactory.deletz(id).then(() => {
+  		getItems();
+  	}).catch((error) => {
+  		console.log("deleteItem error", error);
+  	});
+  }; 
 
 });

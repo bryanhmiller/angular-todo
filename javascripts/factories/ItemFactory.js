@@ -6,10 +6,12 @@ app.factory("ItemFactory", function($http, $q, FIREBASE_CONFIG) {
       $http.get(`${FIREBASE_CONFIG.databaseURL}/items.json`)
       .then((fbItems) => {
           var itemCollection = fbItems.data;
-          Object.keys(itemCollection).forEach((key) => {
-            itemCollection[key].id=key;
-            itemz.push(itemCollection[key]);
-          });
+          if(itemCollection !== null) {
+            Object.keys(itemCollection).forEach((key) => {
+              itemCollection[key].id=key;
+              itemz.push(itemCollection[key]);
+            });
+          }
           resolve(itemz);
       }).catch((error) => {
         reject(error);
@@ -17,7 +19,7 @@ app.factory("ItemFactory", function($http, $q, FIREBASE_CONFIG) {
     });  
   };
 
-    let postNewItem = (newItem) => {
+  let postNewItem = (newItem) => {
     return $q ((resolve, reject) => {
       $http.post(`${FIREBASE_CONFIG.databaseURL}/items.json`, JSON.stringify(newItem))
       .then((resultz) => {
@@ -28,7 +30,18 @@ app.factory("ItemFactory", function($http, $q, FIREBASE_CONFIG) {
     });
   };
 
+  let deletz = (itemId) => {
+    return $q ((resolve, reject) => {
+      $http.delete(`${FIREBASE_CONFIG.databaseURL}/items/${itemId}.json`)
+      .then((resultz) => {
+        resolve(resultz);
+      }).catch((error) => {
+        reject(error);
+      });
+    });
+  };
 
-  return {getItemList:getItemList, postNewItem:postNewItem};
+
+  return {getItemList:getItemList, postNewItem:postNewItem, deletz:deletz};
 
 });
