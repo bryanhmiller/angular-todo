@@ -15,5 +15,15 @@
             "task": "take a nap",
             "assignedTo": "Zoe"
         }
+    },
+    "users": {
+        "user0": {
+            "uid": "kpO5KHjEB6VVESV0tzcvptXHVG52",
+            "username": "Abe"
+        },
+        "user1": {
+            "uid": "O43p5WrevRNEKMAxl9W50mOv99B2",
+            "username": "Bebe"
+        }
     }
 }
